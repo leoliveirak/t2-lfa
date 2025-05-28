@@ -15,16 +15,14 @@ class AP:
         self._estado_atual = self._q0
         self._stack.clear()
 
-    def realizar_transicao(self, q, appendpilha, poppilha, pilha):
+    def realizar_transicao(self, q, appendpilha, poppilha):
         if(poppilha != 'EMPTY'):
-            pilha.pop()
+            self._stack.pop()
         
         if(appendpilha != 'EMPTY'):
-            pilha.append(appendpilha)
+            self._stack.append(appendpilha)
         
         if(q not in self._Q):
             raise Exception(f"Estado {q} não pertence ao conjunto de estados Q")
         else:
             self._estado_atual = q
-        
-        return pilha
