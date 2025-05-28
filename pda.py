@@ -26,3 +26,15 @@ class AP:
             raise Exception(f"Estado {q} não pertence ao conjunto de estados Q")
         else:
             self._estado_atual = q
+
+    def run(self, entrada):
+        self.clean()
+
+        for simbolo in entrada:
+            transicao = self._delta.get((self._estado_atual, simbolo, self._stack[-1]))
+            self.realizar_transicao(transicao[0], transicao[1], transicao[2])
+
+        if self._estado_atual in self._F:
+            return True
+        else:
+            return False
