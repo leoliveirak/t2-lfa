@@ -30,9 +30,12 @@ class AP:
     def run(self, entrada):
         self.clean()
 
+        self._stack.append('EMPTY')
+
         for simbolo in entrada:
+            print(f"Estado atual: {self._estado_atual}, Símbolo: {simbolo}, Pilha: {list(self._stack)}")
             transicao = self._delta.get((self._estado_atual, simbolo, self._stack[-1]))
-            self.realizar_transicao(transicao[0], transicao[1], transicao[2])
+            self.realizar_transicao(transicao[0], transicao[1], self._stack[-1])
 
         if self._estado_atual in self._F:
             return True
