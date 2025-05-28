@@ -1,3 +1,5 @@
+from collections import deque
+
 class AP:
     def __init__(self, Q, Sigma, gama, delta, q0, F):
         self._Q = Q
@@ -7,6 +9,11 @@ class AP:
         self._q0 = q0
         self._F = F
         self._estado_atual = q0
+        self._stack = deque()
+
+    def clean(self):
+        self._estado_atual = self._q0
+        self._stack.clear()
 
     def realizar_transicao(self, q, appendpilha, poppilha, pilha):
         if(poppilha != 'EMPTY'):
