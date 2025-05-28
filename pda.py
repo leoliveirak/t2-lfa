@@ -8,11 +8,11 @@ class AP:
         self._delta = delta
         self._q0 = q0
         self._F = F
-        self._estado_atual = q0
+        self.qA = q0
         self._stack = deque()
 
     def clean(self):
-        self._estado_atual = self._q0
+        self.qA = self._q0
         self._stack.clear()
 
     def realizar_transicao(self, q, appendpilha, poppilha):
@@ -25,7 +25,7 @@ class AP:
         if(q not in self._Q):
             raise Exception(f"Estado {q} não pertence ao conjunto de estados Q")
         else:
-            self._estado_atual = q
+            self.qA = q
 
     def run(self, entrada):
         self.clean()
@@ -33,11 +33,24 @@ class AP:
         self._stack.append('EMPTY')
 
         for simbolo in entrada:
-            print(f"Estado atual: {self._estado_atual}, Símbolo: {simbolo}, Pilha: {list(self._stack)}")
-            transicao = self._delta.get((self._estado_atual, simbolo, self._stack[-1]))
-            self.realizar_transicao(transicao[0], transicao[1], self._stack[-1])
+            print(f"DEBUG: qA: {self.qA}, w[i]: {simbolo}, Pilha: {list(self._stack)}")
+            if(self.fazer_transicao_vazia_se_existir()):
+                continue
+            transicao = self._delta.get((self.qA, simbolo, self._stack[-1]))
+            print(f"DEBUG: qA: {self.qA}, w[i]: {simbolo}, Pilha: {list(self._stack)}")
+            if transicao:
+                self.realizar_transicao(transicao[0], transicao[1], self._stack[-1])
 
-        if self._estado_atual in self._F:
+        if self.qA in self._F:
             return True
         else:
             return False
+
+    def fazer_transicao_vazia_se_existir(self):
+        transicao = self._delta.get((self.qA, 'EMPTY', 'EMPTY'))
+        if transicao:
+            print(f"DEBUG: Fez transição vazia: {transicao}")
+            self.realizar_transicao(transicao[0], transicao[1], 'EMPTY')
+            return True
+        return False
+        
