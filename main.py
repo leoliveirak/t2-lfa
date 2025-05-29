@@ -24,13 +24,13 @@ delta = {
 	('q1', 'T', '$'): ('q3', '$'),
 	('q1', 'T', 'T'): ('q3', 'T'),
 	
-	('q1', '#', '$'): ('q0', EPSILON),
+	('q1', '#', '$'): ('q4', EPSILON),
 	
 	('q2', EPSILON, EPSILON): ('q1', 'A'),
 	
 	('q3', EPSILON, EPSILON): ('q1', 'T'),
 }
-F = ['q0']
+F = ['q4']
 
 # Criação do autômato de pilha
 pda = AP(Q, Sigma, gama, delta, 'q0', F)
