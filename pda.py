@@ -36,10 +36,14 @@ class AP:
             if simbolo not in self._Sigma:
                 print(f"Símbolo {simbolo} não pertence ao alfabeto Sigma")
                 return False
-            self.fazer_transicao_vazia_se_existir()
+            fez_tv = self.fazer_transicao_vazia_se_existir()
             transicao = self._delta.get((self.qA, simbolo, self._stack[-1]))
             if transicao:
                 self.realizar_transicao(transicao[0], transicao[1], self._stack[-1])
+
+            if (not fez_tv and not transicao):
+                return False
+            
         if self.qA in self._F:
             return True
         else:
@@ -48,7 +52,6 @@ class AP:
     def fazer_transicao_vazia_se_existir(self):
         transicao = self._delta.get((self.qA, EPSILON, EPSILON))
         if transicao:
-            print(f"DEBUG: Fez transição vazia: {transicao}")
             self.realizar_transicao(transicao[0], transicao[1], EPSILON)
             return True
         return False

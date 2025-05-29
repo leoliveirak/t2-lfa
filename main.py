@@ -2,7 +2,7 @@ from pda import AP
 from constants import EPSILON
 
 # Definição do autômato de pilha
-Q = ['q0', 'q1', 'q2', 'q3', 'q4']
+Q = ['q0', 'q1', 'q2', 'q3', 'q4', 'q5']
 Sigma = ['#', 'T', 'C', 'A', 'G', EPSILON]
 gama = ['$', 'T', 'A', EPSILON]
 delta = {
@@ -36,15 +36,29 @@ F = ['q4']
 pda = AP(Q, Sigma, gama, delta, 'q0', F)
 
 # Testes
-# sequencia_testes = {
-    
-# }
+sequencia_testes = [
+	("AAACGCCTCATTAAAGTGGTTT#", True),
+	("AAACGCCTCATTAAAGTGGTTT", False),
+	("AAACGCCTCATTAAAGTGGTTT#A", False),
+	("AAACGCCTCATTAAAGTGGTTT#G", False),
+	("AAACGCCTCATTAAAGTGGTTT#C", False),
+	("AAACGCCTCATTAAAGTGGTTT#T", False),
+    ("ABBC#", False),
+    ("ACGTACGT#", True),
+    ("##", False),
+    ("#", True),
+    ("###", False),
+    ("", False),
+    ("AGATAGAT#", False),
+    ("AGGTCGAGGTCGAGGTCGAGGTCGAGGTCG#", True),
+    ("AGCT#", True),
+    ("AATT#", True),
+    ("AAAC#", False),
+    ("AATT", False),
+]
 
-entrada = "AAACGCCTCATTAAAGTGGTTT#" 
-
-resultado = pda.run(entrada)
-
-if resultado:
-    print("A entrada é aceita pelo autômato de pilha.")
-else:
-    print("A entrada não é aceita pelo autômato de pilha.")
+for entrada, esperado in sequencia_testes:
+	resultado = pda.run(entrada)
+	print(f"entrada: {entrada}")
+	print(f"esperado: {esperado}, obtido: {resultado}")
+	print()
