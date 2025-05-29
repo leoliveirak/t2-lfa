@@ -3,7 +3,7 @@ from constants import EPSILON
 
 # Definição do autômato de pilha
 Q = ['q0', 'q1', 'q2', 'q3', 'q4']
-Sigma = ['T', 'C', 'A', 'G', EPSILON]
+Sigma = ['#', 'T', 'C', 'A', 'G', EPSILON]
 gama = ['$', 'T', 'A', EPSILON]
 delta = {
 	('q0', EPSILON, EPSILON): ('q1', '$'),
@@ -24,7 +24,7 @@ delta = {
 	('q1', 'T', '$'): ('q3', '$'),
 	('q1', 'T', 'T'): ('q3', 'T'),
 	
-	('q1', EPSILON, '$'): ('q4', EPSILON),
+	('q1', '#', '$'): ('q4', EPSILON),
 	
 	('q2', EPSILON, EPSILON): ('q1', 'A'),
 	
@@ -41,7 +41,7 @@ pda = AP(Q, Sigma, gama, delta, 'q0', F)
 # }
 
 # Teste do autômato de pilha com uma entrada
-entrada = "AAACGCCTCATTAAAGTGGTTT" 
+entrada = "AAACGCCTCATTAAAGTGGTTT#" 
 
 #entrada = entrada.strip().split()  # Divide a entrada em símbolos
 

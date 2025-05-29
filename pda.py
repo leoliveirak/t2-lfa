@@ -46,10 +46,10 @@ class AP:
             if transicao:
                 print(f"DEBUG: qA: {self.qA}, w[i]: {simbolo}, Pilha: {list(self._stack)}")
                 self.realizar_transicao(transicao[0], transicao[1], self._stack[-1])
-        ts = self._delta.get((self.qA, EPSILON, self._stack[-1]));
-        if (ts):
-            #print(f"DEBUG: qA: {self.qA}, w[i]: {simbolo}, Pilha: {list(self._stack)}")
-            self.realizar_transicao(ts[0], ts[1], self._stack[-1])
+        # ts = self._delta.get((self.qA, EPSILON, self._stack[-1]));
+        # if (ts):
+        #     #print(f"DEBUG: qA: {self.qA}, w[i]: {simbolo}, Pilha: {list(self._stack)}")
+        #     self.realizar_transicao(ts[0], ts[1], self._stack[-1])
 
         if self.qA in self._F:
             return True
