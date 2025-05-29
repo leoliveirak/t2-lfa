@@ -2,7 +2,7 @@ from pda import AP
 from constants import EPSILON
 
 # Definição do autômato de pilha
-Q = ['q0', 'q1', 'q2', 'q3', 'q4', 'q5']
+Q = ['q0', 'q1', 'q2', 'q3', 'q4']
 Sigma = ['#', 'T', 'C', 'A', 'G', EPSILON]
 gama = ['$', 'T', 'A', EPSILON]
 delta = {
