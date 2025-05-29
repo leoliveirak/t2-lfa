@@ -35,22 +35,11 @@ class AP:
         for simbolo in entrada:
             if simbolo not in self._Sigma:
                 print(f"Símbolo {simbolo} não pertence ao alfabeto Sigma")
-                break
-            #print(f"DEBUG: Delta completo em uso: {self._delta}")
-            print(f"DEBUG: Chave sendo buscada: {(self.qA, simbolo, self._stack[-1])}")
-            #print(f"DEBUG: qA: {self.qA}, w[i]: {simbolo}, Pilha: {list(self._stack)}")
-            if(self.fazer_transicao_vazia_se_existir()):
-                print(f"DEBUG: qA: {self.qA}, w[i]: {simbolo}, Pilha: {list(self._stack)}")
-                #continue
+                return False
+            self.fazer_transicao_vazia_se_existir()
             transicao = self._delta.get((self.qA, simbolo, self._stack[-1]))
             if transicao:
-                print(f"DEBUG: qA: {self.qA}, w[i]: {simbolo}, Pilha: {list(self._stack)}")
                 self.realizar_transicao(transicao[0], transicao[1], self._stack[-1])
-        # ts = self._delta.get((self.qA, EPSILON, self._stack[-1]));
-        # if (ts):
-        #     #print(f"DEBUG: qA: {self.qA}, w[i]: {simbolo}, Pilha: {list(self._stack)}")
-        #     self.realizar_transicao(ts[0], ts[1], self._stack[-1])
-
         if self.qA in self._F:
             return True
         else:

@@ -40,17 +40,7 @@ pda = AP(Q, Sigma, gama, delta, 'q0', F)
     
 # }
 
-# Teste do autômato de pilha com uma entrada
 entrada = "AAACGCCTCATTAAAGTGGTTT#" 
-
-#entrada = entrada.strip().split()  # Divide a entrada em símbolos
-
-# Adiciona o símbolo EPSILON ao final da entrada
-#entrada.append(EPSILON) 
-
-# Adiciona o símbolo EPSILON ao início da entrada
-#entrada.insert(0, EPSILON)
-
 
 resultado = pda.run(entrada)
 
