@@ -33,6 +33,9 @@ class AP:
         self._stack.append(EPSILON)
 
         for simbolo in entrada:
+            if simbolo not in self._Sigma:
+                print(f"Símbolo {simbolo} não pertence ao alfabeto Sigma")
+                break
             #print(f"DEBUG: Delta completo em uso: {self._delta}")
             print(f"DEBUG: Chave sendo buscada: {(self.qA, simbolo, self._stack[-1])}")
             #print(f"DEBUG: qA: {self.qA}, w[i]: {simbolo}, Pilha: {list(self._stack)}")
