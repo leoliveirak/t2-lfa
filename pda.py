@@ -36,7 +36,9 @@ class AP:
             if simbolo not in self._Sigma:
                 print(f"Símbolo {simbolo} não pertence ao alfabeto Sigma")
                 return False
-            fez_tv = self.fazer_transicao_vazia_se_existir()
+            fez_tv = False
+            while self.fazer_transicao_vazia_se_existir():
+                fez_tv = True
             transicao = self._delta.get((self.qA, simbolo, self._stack[-1]))
             if transicao:
                 self.realizar_transicao(transicao[0], transicao[1], self._stack[-1])
